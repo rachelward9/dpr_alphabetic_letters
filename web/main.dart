@@ -3,38 +3,45 @@
 
 import 'dart:html';
 
-List word = [
-  "a",
-  "z",
-  "l",
-  "m",
-  "o",
-  "s",
-  "t"
+List<String> words = [
+"billowy",
+"biopsy",
+"chinos",
+"defaced",
+"chintz",
+"sponged",
+"bijoux",
+"abhors",
+"fiddle",
+"begins",
+"chimps",
+"wronged"
 ];
 
 void main() {
-  querySelector('#orig').text = '$word';
-  checkAlphabetic(word);
-
+  querySelector('#orig').text = '${words[words.length-1]}';
+  judgeList(words);
 }
 
-void checkAlphabetic(List<String> l) {
-  List<String> newL = [];
-  newL.addAll(l);
+void judgeList(List w) {
+  List<String> wList = [];
+  wList.addAll(w);
 
-  // Alphabetize the letters in the word.
-  newL.sort();
-
-  querySelector("#alphabetized").text = "$newL";
-
-  for (int i = 0; i <= l.length; i++) {
-    if (newL[i] != word[i]) {
-      querySelector("#result").text = "NOT IN ORDER";
-      return;
-    }
-    else {
-      querySelector("#result").text = "IN ORDER";
-    }
+  for (String word in wList) {
+    checkAlphabetic(word);
   }
+}
+
+void checkAlphabetic(String word) {
+  // Break the word into a list of letters.
+  List<String> letters = word.split("");
+
+  // Alphabetize the letters.
+  letters.sort();
+
+  // Compare word to the sorted and re-stringed word to see if it changed.
+  (word == letters.join()) ? querySelector("#result").text = "IN ORDER" : querySelector("#result").text = "NOT IN ORDER";
+
+  // Show the sorted version of the word.
+  querySelector("#alphabetized").text = "${letters.join("")}";
 }
