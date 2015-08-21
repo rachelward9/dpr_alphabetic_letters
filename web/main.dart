@@ -1,6 +1,3 @@
-// Copyright (c) 2015, <your name>. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 import 'dart:html';
 
 List<String> words = [
@@ -19,7 +16,7 @@ List<String> words = [
 ];
 
 void main() {
-  querySelector('#orig').text = '${words[words.length-1]}';
+  querySelector('#orig').text = '${words.last}';
   judgeList(words);
 }
 
