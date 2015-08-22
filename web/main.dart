@@ -37,8 +37,24 @@ void checkAlphabetic(String word) {
   letters.sort();
 
   // Compare word to the sorted and re-stringed word to see if it changed.
-  (word == letters.join()) ? querySelector("#result").text = "IN ORDER" : querySelector("#result").text = "NOT IN ORDER";
+  (word == letters.join()) ? querySelector("#result").text = "In Order" : querySelector("#result").text = "${checkReverse(word, letters)}";
 
   // Show the sorted version of the word.
   querySelector("#alphabetized").text = "${letters.join("")}";
+}
+
+String checkReverse(String word, List<String> letters) {
+  String answer;
+
+  List<String> origWordReversed = [];
+
+  for (int i = word.split("").length-1; i >= 0; i--) {
+    origWordReversed.add(word.split("")[i]);
+  }
+
+  print("This is origWordReversed: $origWordReversed");
+  print("This is lettersReversed $letters");
+
+  answer = (origWordReversed.join() == letters.join()) ?  querySelector("#result").text = "Reverse Order" : querySelector("#result").text = "Not in Order";
+  return answer;
 }
